@@ -4,10 +4,10 @@ const {addHabitat,allHabitats,getHabitat,updateHabitat,deleteHabitat}=require('.
 const { isAuth } = require("../../../middlewares/auth.middleware");
 
 //crud
-router.post('/add',addHabitat);
-router.get("/",allHabitats)
-router.get("/:id",getHabitat)
-router.put("/update",updateHabitat)
-router.delete("/delete",deleteHabitat)
+router.post('/add', [isAuth],addHabitat);
+router.get("/", [isAuth],allHabitats)
+router.get("/:id", [isAuth],getHabitat)
+router.put("/update", [isAuth],updateHabitat)
+router.delete("/delete", [isAuth],deleteHabitat)
 
 module.exports = router;

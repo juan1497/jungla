@@ -4,10 +4,10 @@ const {addFamily,allFamilies,getFamily,updateFamily,deleteFamily}=require('../co
 const { isAuth } = require("../../../middlewares/auth.middleware");
 
 //crud
-router.post('/add',addFamily);
-router.get("/",allFamilies)
-router.get("/:id",getFamily)
-router.put("/update/",updateFamily)
-router.delete("/delete/",deleteFamily)
+router.post('/add', [isAuth],addFamily);
+router.get("/", [isAuth],allFamilies)
+router.get("/:id", [isAuth],getFamily)
+router.put("/update/", [isAuth],updateFamily)
+router.delete("/delete/", [isAuth],deleteFamily)
 
 module.exports = router;

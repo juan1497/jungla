@@ -35,7 +35,7 @@ const allHabitats= async(req, res,next)=>{
 const getHabitat= async(req, res,next)=>{
     try{
         const{id}=req.params
-        const habitat = await Habitat.find({id:id})
+        const habitat = await Habitat.findOne({id:id})
         return res.json({
             status: 201,
             message: HTTPSTATUSCODE[202],

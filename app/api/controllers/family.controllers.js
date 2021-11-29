@@ -26,7 +26,7 @@ const allFamilies= async(req, res,next)=>{
         return res.json({
             status: 201,
             message: HTTPSTATUSCODE[201],
-            data: { animals: families }
+            data: { families: families }
         });
     } catch (error) {
         return next(error);

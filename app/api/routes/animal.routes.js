@@ -4,10 +4,10 @@ const {addAnimal,allAnimals,getAnimal,updateAnimal,deleteAnimal }=require('../co
 const { isAuth } = require("../../../middlewares/auth.middleware");
 
 //crud
-router.post('/add',addAnimal);
-router.get("/",allAnimals)
-router.get("/:id",getAnimal)
-router.put("/update",updateAnimal)
-router.delete("/delete",deleteAnimal)
+router.post('/add', [isAuth],addAnimal);
+router.get("/", [isAuth],allAnimals)
+router.get("/:id", [isAuth],getAnimal)
+router.put("/update", [isAuth],updateAnimal)
+router.delete("/delete/:id", [isAuth],deleteAnimal)
 
 module.exports = router;

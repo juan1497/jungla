@@ -8,6 +8,7 @@ const HTTPSTATUSCODE = require("./utils/httpStatusCode");
 const animal=require("./app/api/routes/animal.routes");
 const family=require("./app/api/routes/family.routes");
 const habitat=require("./app/api/routes/habitat.routes");
+const user=require("./app/api/routes/user.routes")
 
 
 
@@ -22,11 +23,12 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Headers', 'Content-Type');
+    // res.header('Access-Control-Allow-Origin', 'http://localhost:4200/');
     next();
 });
 
 app.use(cors({
-    origin: ['http://localhost:4200/'],
+    origin: ['http://localhost:4200'],
     credentials: true,
 }));
 
@@ -39,6 +41,8 @@ app.use(logger("dev"));
 app.use("/animal",animal);
 app.use("/family",family);
 app.use("/habitat",habitat);
+app.use("/user",user);
+
 
 // 404 route
 app.use((req, res, next) => {

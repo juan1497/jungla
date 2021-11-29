@@ -2,16 +2,17 @@ const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const HTTPSTATUSCODE = require("../../../utils/httpStatusCode");
-
+const Mensaje = require("../mail/configMail");
 const register = async (req, res, next) => {
     try {
         const newUser = new User({
             name:req.body.name,
             email:req.body.email,
             password:req.body.password,
+            
         });
         const userDb = await newUser.save();
-        console.log(userDb)
+        Mensaje(userDb)
         return res.json({
             status: 201,
             message: HTTPSTATUSCODE[201],
@@ -32,7 +33,6 @@ const login = async (req, res, next) => {
                     id: userInfo._id,
                     name: userInfo.name
                 },
-
                 req.app.get("secretKey"), { expiresIn: "1h" }
             );
             return res.json({
@@ -56,8 +56,8 @@ const login = async (req, res, next) => {
 const logout = (req, res, next) => {
     try {
         return res.json({
-            status: 201,
-            message: HTTPSTATUSCODE[201],
+            status: 202,
+            message: HTTPSTATUSCODE[202],
             token: null
         })
     } catch (error) {
