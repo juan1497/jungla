@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const dotenv = require("dotenv")
 dotenv.config();
-module.exports = (user) => {
+module.exports = async (user) => {
     const email=process.env.MAIL;
     const pass=process.env.PASS;
     var transporter = nodemailer.createTransport({
