@@ -11,6 +11,18 @@ module.exports = (user) => {
             pass: pass 
         }
     });
+    await new Promise((resolve, reject) => {
+        // verify connection configuration
+        transporter.verify(function (error, success) {
+            if (error) {
+                console.log(error);
+                reject(error);
+            } else {
+                console.log("Server is ready to take our messages");
+                resolve(success);
+            }
+        });
+    });
     const mailOptions = {
         from: `"🐒La Jungla Jumanji🦁" <${email}>`,
         to: `${user.email}`, 
@@ -21,10 +33,17 @@ module.exports = (user) => {
  <strong>Mensaje:</strong> Gracias por Registrarte la vamos a pasar de Jungla !
  `
     };
-    transporter.sendMail(mailOptions, function (err, info) {
-        if (err)
-            console.log(err)
-        else
-            console.log(info);
+    await new Promise((resolve, reject) => {
+        // send mail
+        transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+                console.error(err);
+                reject(err);
+            } else {
+                console.log(info);
+                resolve(info);
+            }
+        });
     });
+    
 }
