@@ -12,7 +12,7 @@ module.exports = (user) => {
         }
     });
     const mailOptions = {
-        from: `"🐒La Jungla🦁" <${email}>`,
+        from: `"🐒La Jungla Jumanji🦁" <${email}>`,
         to: `${user.email}`, 
         subject: "Te Has registrado🦁 en La Jungla 🐒",
         html: `
