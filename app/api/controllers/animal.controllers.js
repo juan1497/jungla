@@ -10,15 +10,14 @@ const addAnimal= async(req, res,next)=>{
             family:req.body.family
         })
         const animalDB= await animal.save()
-        
         return res.json({
             status: 201,
             message: HTTPSTATUSCODE[201],
-            data: { animal:`${animal.name} creado` }
+            data: { animal:`${animalDB.name} creado` }
         });
     } catch (error) {
-        
-        return next(error);
+        res.status(500)
+        return res.send({ error: 'Algo ocurrio' })
     }
 }
 
@@ -31,7 +30,8 @@ const allAnimals= async(req, res,next)=>{
             data: { animals: animals }
         });
     } catch (error) {
-        return next(error);
+        res.status(500)
+        return res.send({ error: 'Algo ocurrio' })
     }
 }
 const getAnimal= async(req, res,next)=>{
@@ -44,7 +44,8 @@ const getAnimal= async(req, res,next)=>{
             data: { animal: animal }
         })
     }catch(error){
-        return next(error)
+        res.status(500)
+        return res.send({ error: 'Algo ocurrio' })
     }
 }
 const updateAnimal= async(req, res,next)=>{
@@ -57,7 +58,8 @@ const updateAnimal= async(req, res,next)=>{
             data: { animal: `${animal.id} actualizado` }
         })
     } catch (error) {
-        return next(error);
+        res.status(500)
+        return res.send({ error: error })
     }
 }
 const deleteAnimal= async(req, res,next)=>{

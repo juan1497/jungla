@@ -26,7 +26,7 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     next();
 });
-const origins=['http://localhost:4200','https://jungla-nine.vercel.app']
+const origins=['http://localhost:4200','https://jungla-nine.vercel.app','http://localhost:3000','https://jungla-front-react.vercel.app']
 
 app.use(cors({
     origin:origins,

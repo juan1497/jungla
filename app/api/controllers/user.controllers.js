@@ -19,7 +19,8 @@ const register = async (req, res, next) => {
             data: userDb.name
         });
     } catch (error) {
-        return next(error);
+        res.status(500)
+        return res.send({ error: 'Algo ocurrio',error })
     }
 }
 
@@ -41,14 +42,13 @@ const login = async (req, res, next) => {
                 data: { user: userInfo, token: token }
             });
         } else {
-            return res.json({
-                status: 401,
-                message: HTTPSTATUSCODE[401],
-                data: {}
-            })
+            res.status(500)
+            return res.send({ error: 'Ups tus credenciales no son validas' })
         }
     } catch (error) {
-        return next(error);
+        res.status(500)
+        return res.send({ error: 'Ups tus credenciales no son validas' })
+    
     }
 }
 
